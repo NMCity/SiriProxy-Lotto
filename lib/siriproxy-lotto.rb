@@ -108,10 +108,7 @@ if shaf =="timeout"
     zz = zz.reverse
     zz = zz.chop.chop.chop
     zz = zz.reverse
-    sz = zal[7]
-    sz = sz.reverse
-    sz = sz.chop.chop.chop
-    sz = sz.reverse
+    
     
     if tag == "Mo"
         saytag = "Montag"
@@ -133,7 +130,7 @@ if shaf =="timeout"
     
     say "6 aus 49 - Ziehung vom: " + saytag + " den " + datt + "." + datm + "." + datj, spoken: "6 aus 49, Ziehung vom: " + saytag + " den " + datt + "ten " + datm + "ten " + datj
     say "GZ: " + z1 + " " + z2 + "  " + z3 + "  " +z4+ "  " + z5 + "  " +z6, spoken: "Gewinnzahlen: " + z1 + ", " + z2 + ",  " + z3 + ",  " + z4 + ",  " + z5 + ",  " + z6
-    say "Zusatzzahl: " + zz + "  Superzahl: " + sz
+    say "  Superzahl: " + sz
     say "alle Angaben ohne Gewähr"
 end    
 

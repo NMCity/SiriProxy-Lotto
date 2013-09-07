@@ -104,10 +104,10 @@ if shaf =="timeout"
     z4 = zal[3]
     z5 = zal[4]
     z6 = zal[5]
-    zz = zal[6]
-    zz = zz.reverse
-    zz = zz.chop.chop.chop
-    zz = zz.reverse
+    sz = zal[6]
+    sz = sz.reverse
+    sz = sz.chop.chop.chop
+    sz = sz.reverse
     
     
     if tag == "Mo"

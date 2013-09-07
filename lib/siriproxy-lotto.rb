@@ -79,9 +79,9 @@ if shaf =="timeout"
     datj = "2011" 
     elsif dat = dat2.match(/(2012)/)
     datj = "2012" 
-    elsif dat = dat2.match(/2013)/)
+    elsif dat = dat2.match(/(2013)/)
     datj = "2013"
-    elsif dat = dat2.match(/2014)/)
+    elsif dat = dat2.match(/(2014)/)
     datj = "2014"
     end
     dat2 = dat.pre_match

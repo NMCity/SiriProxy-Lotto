@@ -53,7 +53,7 @@ class SiriProxy::Plugin::Lotto < SiriProxy::Plugin
     
 # german Looto numbers 4au49
     
-listen_for /(Lotto|Lottozahlen|Ziehung|Lottoziehung|Lauter|Sechs aus 49|Sex aus 49).*(Deutschland)/i do
+listen_for /(Lotto|Lottozahlen|Ziehung|Lottoziehung|Lauter|Sechs aus 49|Sex aus 49)/i do
     
     shaf = ""
     begin
@@ -79,6 +79,10 @@ if shaf =="timeout"
     datj = "2011" 
     elsif dat = dat2.match(/(2012)/)
     datj = "2012" 
+    elsif dat = dat2.match(/2013)/)
+    datj = "2013"
+    elsif dat = dat2.match(/2014)/)
+    datj = "2014"
     end
     dat2 = dat.pre_match
     dat = dat2.split('.')
@@ -208,84 +212,6 @@ end
 
 request_completed
 end
-
-
-# Lotto numbers austria 6aus45
-
-listen_for /(Lotto|Lottozahlen|Ziehung|Lottoziehung|Lauter|Sechs aus 49|Sex aus 49)/i do
-    shaf = ""
-    begin
-        doc = Nokogiri::XML(eat("http://www.lottoy.net/de/lotto-oesterreich/rss-feed/aktuelle-lottozahlen-gewinnzahlen-6aus45.xml"))
-        rescue Timeout::Error
-        print "Timeout-Error beim Lesen der Seite"
-        shaf ="timeout"
-        say "Es gab ein Problem beim einlesen der Lotodaten!"
-        request_completed
-        next
-        rescue
-        print "Lesefehler !"
-        shaf ="timeout"
-        next
-    end
-    docs = doc.xpath('//description')
-    datss = docs[1]
-    dats =datss.to_s.split
-    tag = dats[6].to_s
-    tag = tag.delete "&;"
-    tag = tag.chop.chop.chop.chop.chop.chop.chop.chop
-    tag = tag.reverse
-    tag = tag.chop.chop.chop.chop.chop.chop.chop.chop.chop.chop.chop
-    tag = tag.reverse
-    dat = dats[7]
-    dat = dat.chop.chop.chop.chop.chop.chop.chop.chop.chop.chop
-    datss = dat.split('.')
-    datt = datss[0].to_s
-    datm = datss[1].to_s
-    datj = datss[2].to_s
-    z1 = dats[9].to_s
-    z2 = dats[10].to_s
-    z3 = dats[11].to_s
-    z4 = dats[12].to_s
-    z5 = dats[13].to_s
-    z6 = dats[14].to_s
-    z1 = z1.chop
-    z2 = z2.chop
-    z3 = z3.chop
-    z4 = z4.chop
-    z5 = z5.chop
-    zz = dats[16].to_s
-    jo = dats[18].to_s + dats[19].to_s
-    jop = jo
-    jo = jo.byteslice(0) + " " + jo.byteslice(1) + " " + jo.byteslice(2) + " " + jo.byteslice(3) + " " + jo.byteslice(4) + " " + jo.byteslice(5)
-    jos = jop.split.to_s
-    joss = jos[2] + ", " + jos[3] + ", " + jos[4] + ", " + jos[5] + ", " + jos[6] + ", " + jos[7]
-    
-    if tag == "Montag"
-        saytag = "Montag"
-        elsif tag == "Dienstag"
-        saytag = "Dienstag"
-        elsif tag == "Mittwoch"
-        saytag = "Mittwoch"
-        elsif tag == "Donnerstag"
-        saytag = "Donnerstag"
-        elsif tag == "Freitag"
-        saytag = "Freitag"
-        elsif tag == "Samstag"
-        saytag = "Samstag"
-        elsif tag == "Sonntag"
-        saytag = "Sonntag"
-        else
-        saytag = "Fehler, Vorsicht!"
-    end
-    
-    say "6 aus 45 - Ziehung vom: " + saytag +" den " +datt+ "." + datm +"." + datj, spoken: "6 aus 45, Ziehung vom: " + saytag +" den " +datt+ "ten " + datm +"ten " + datj
-    say "GZ: " + z1 +"  "+ z2 +"  "+z3+"  " +z4+"  " +z5+"  " +z6, spoken: "Gewinnzahlen: " + z1 +",  "+ z2 +",  "+z3+",  " +z4+",  " +z5+",  " +z6
-    say "ZZ: " + zz + " Joker: " + jo, spoken: "Zusatzzahl: " + zz + ", Tschoker: " + joss
-    say "alle Angaben ohne Gewähr"
-    
-    request_completed
-end
-
 
 
 end

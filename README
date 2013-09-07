@@ -31,6 +31,11 @@ einfach folgende Zeilen in die User/xxx/.siriproxy/config.yml Datei einfügen (V
 
 - name: 'Lotto'
   git: 'git://github.com/muhkuh0815/SiriProxy-Lotto.git'
+  
+### Modified
+
+- name: 'Lotto'
+  git: 'https://github.com/NMCity/SiriProxy-Lotto.git'
 
 danach einmal Siriproxy update
 die Plugin Dateien liegen dann in
